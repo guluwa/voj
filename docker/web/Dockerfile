@@ -58,7 +58,7 @@ RUN rm apache-tomcat-9.0.12.tar.gz
 
 # Setup Web Project
 RUN apt-get install -y git
-RUN git clone https://github.com/hzxie/voj.git
+RUN git clone https://github.com/guluwa/voj.git
 RUN $M2_HOME/bin/mvn package -DskipTests -f voj/web/pom.xml
 RUN cp -R voj/web/target/voj.web /opt/tomcat/webapps/voj
 RUN sed -i "s@45.77.97.219:8080/voj@${WEBSITE_URL}@g" /opt/tomcat/webapps/voj/WEB-INF/classes/voj.properties
