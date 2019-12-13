@@ -5,7 +5,7 @@ MAINTAINER Haozhe Xie "cshzxie@gmail.com"
 # User Settings
 ARG MYSQL_ROOT_PASS=dBuZNz6tDKhgZjHX
 ARG MYSQL_USER_PASS=U3bEwhRHnD6xNVpb
-ARG WEBSITE_URL=45.77.97.219:8080/voj
+ARG WEBSITE_URL=208.167.248.70:8080/voj
 ARG MAIL_HOST=smtp.mailgun.org
 ARG MAIL_USERNAME=postmaster@verwandlung.org
 ARG MAIL_PASSWORD=passwd
@@ -61,7 +61,7 @@ RUN apt-get install -y git
 RUN git clone https://github.com/guluwa/voj.git
 RUN $M2_HOME/bin/mvn package -DskipTests -f voj/web/pom.xml
 RUN cp -R voj/web/target/voj.web /opt/tomcat/webapps/voj
-RUN sed -i "s@45.77.97.219:8080/voj@${WEBSITE_URL}@g" /opt/tomcat/webapps/voj/WEB-INF/classes/voj.properties
+RUN sed -i "s@208.167.248.70:8080/voj@${WEBSITE_URL}@g" /opt/tomcat/webapps/voj/WEB-INF/classes/voj.properties
 RUN sed -i "s/jdbc.username = root/jdbc.username = voj/g" /opt/tomcat/webapps/voj/WEB-INF/classes/voj.properties
 RUN sed -i "s/jdbc.password = /jdbc.password = ${MYSQL_USER_PASS}/g" /opt/tomcat/webapps/voj/WEB-INF/classes/voj.properties
 RUN sed -i "s/mail.host = /mail.host = ${MAIL_HOST}/g" /opt/tomcat/webapps/voj/WEB-INF/classes/voj.properties

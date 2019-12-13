@@ -30,7 +30,7 @@ RUN rm apache-maven-3.5.4-bin.tar.gz
 
 # Setup Judger Project
 RUN apt-get install -y git gcc g++ make
-RUN git clone https://github.com/hzxie/voj.git
+RUN git clone https://github.com/guluwa/voj.git
 RUN sed -i "s@jdbc.url = jdbc:mysql://localhost:3306@jdbc.url = jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}@g" voj/judger/src/main/resources/voj.properties
 RUN sed -i "s/jdbc.username = root/jdbc.username = voj/g" voj/judger/src/main/resources/voj.properties
 RUN sed -i "s/jdbc.password = /jdbc.password = ${MYSQL_USER_PASS}/g" voj/judger/src/main/resources/voj.properties
